@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 
-class Userontroller extends Controller
+class UserController extends Controller
 {
   /**
    * 新規登録画面を表示する

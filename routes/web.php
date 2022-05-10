@@ -18,9 +18,14 @@ use App\Http\Controllers\ShoppingListController;
 */
 
 // ログイン
-Route::get('/',[AuthController::class,'index']);
+Route::get('/',[AuthController::class,'index'])->name('login');
 Route::post('/login',[AuthController::class,'login']);
 // 会員登録
 Route::get('user/register',[UserController::class,'index']);
 // 買い物リスト
-Route::get('shopping_list/list',[ShoppingListController::class,'list']);
+Route::middleware(['auth'])->group(function () {
+  Route::prefix('/shopping_list')->group(function(){
+    Route::get('/list',[ShoppingListController::class,'list']);
+  });
+  Route::get('/logout', [AuthController::class, 'logout']);
+});
