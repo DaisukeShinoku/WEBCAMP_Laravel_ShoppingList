@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShoppingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+// ログイン
 Route::get('/',[AuthController::class,'index']);
+Route::post('/login',[AuthController::class,'login']);
+// 会員登録
+Route::get('user/register',[UserController::class,'index']);
+// 買い物リスト
+Route::get('shopping_list/list',[ShoppingListController::class,'list']);
