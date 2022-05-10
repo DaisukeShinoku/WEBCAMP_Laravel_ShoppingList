@@ -21,11 +21,16 @@ use App\Http\Controllers\ShoppingListController;
 Route::get('/',[AuthController::class,'index'])->name('login');
 Route::post('/login',[AuthController::class,'login']);
 // 会員登録
-Route::get('user/register',[UserController::class,'index']);
-// 買い物リスト
+Route::prefix('/user')->group(function () {
+  Route::get('/register', [UserController::class, 'index'])->name('front.user.register');
+  Route::post('/register', [UserController::class, 'register'])->name('front.user.register.post');
+});
+// 認可処理
 Route::middleware(['auth'])->group(function () {
+  // 買い物リスト
   Route::prefix('/shopping_list')->group(function(){
     Route::get('/list',[ShoppingListController::class,'list']);
   });
+  // ログアウト
   Route::get('/logout', [AuthController::class, 'logout']);
 });
