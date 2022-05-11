@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
   // 買い物リスト
   Route::prefix('/shopping_list')->group(function(){
     Route::get('/list',[ShoppingListController::class,'list']);
+    Route::post('/register',[ShoppingListController::class,'register']);
   });
   // ログアウト
   Route::get('/logout', [AuthController::class, 'logout']);
