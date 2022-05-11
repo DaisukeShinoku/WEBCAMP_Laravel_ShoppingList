@@ -46,9 +46,13 @@
         </button>
       </td>
       <td>
-        <button onclick='return confirm("この「買うもの」を「削除」します。よろしいですか？");' >
-          削除
-        </button>
+        <form action="{{ route('delete', ['shopping_list_id' => $shopping_list->id]) }}" method="post">
+          @csrf
+          @method("DELETE")
+          <button onclick='return confirm("この「買うもの」を「削除」します。よろしいですか？");' >
+            削除
+          </button>
+        </form>
       </td>
     </tr>
     @endforeach
